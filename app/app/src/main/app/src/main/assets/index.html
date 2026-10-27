@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DN SENSI</title>
+<style>
+body {
+  background: #030817;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+h1 { color: #00baff; font-size: 40px; }
+input, select, button {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  font-weight: bold;
+}
+.card {
+  background: #101b32;
+  padding: 18px;
+  border-radius: 15px;
+  margin-top: 15px;
+}
+</style>
+</head>
+<body>
+<h1>DN SENSI</h1>
+<p>GERADOR DE SENSIBILIDADE</p>
+
+<div class="card">
+<h3>Escolha seu dispositivo</h3>
+<select id="device">
+<option>Android</option>
+<option>iOS</option>
+<option>Emulador</option>
+</select>
+
+<h3>Estilo de jogo</h3>
+<select id="style">
+<option>Equilibrado</option>
+<option>Mira rápida</option>
+<option>Precisão</option>
+</select>
+
+<button onclick="gerar()">GERAR SENSI</button>
+<div id="resultado"></div>
+</div>
+
+<script>
+function gerar() {
+  const estilo = document.getElementById('style').value;
+  const valores = estilo === 'Mira rápida'
+    ? [190,180,165,150,95,160]
+    : estilo === 'Precisão'
+    ? [165,150,135,120,80,130]
+    : [180,170,155,140,90,145];
+
+  document.getElementById('resultado').innerHTML =
+    '<div class="card"><h3>SENSIBILIDADE SUGERIDA</h3>' +
+    'Geral: ' + valores[0] + '<br>' +
+    'Ponto vermelho: ' + valores[1] + '<br>' +
+    'Mira 2x: ' + valores[2] + '<br>' +
+    'Mira 4x: ' + valores[3] + '<br>' +
+    'AWM: ' + valores[4] + '<br>' +
+    'Olhadinha: ' + valores[5] +
+    '<p>Ajuste os valores conforme a resposta do seu dispositivo.</p></div>';
+}
+</script>
+</body>
+</html>
